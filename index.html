@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Notas do Marquinhos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #0f0c29;
+        --card: rgba(255, 255, 255, 0.06);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: #f5f5f7;
+        --muted: #b8b5c9;
+        --accent: #a855f7;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--text);
+        background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 540px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.8rem, 5vw, 2.6rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.75rem;
+        background: linear-gradient(90deg, #fff, var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        margin-bottom: 2.5rem;
+      }
+
+      .links {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .link-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.25rem 1.5rem;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        text-decoration: none;
+        color: var(--text);
+        text-align: left;
+        backdrop-filter: blur(10px);
+        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .link-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent);
+        background: rgba(168, 85, 247, 0.12);
+      }
+
+      .link-card .icon {
+        font-size: 1.6rem;
+        line-height: 1;
+      }
+
+      .link-card .meta {
+        flex: 1;
+      }
+
+      .link-card .meta strong {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .link-card .meta span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .link-card .arrow {
+        color: var(--muted);
+        transition: transform 0.2s ease, color 0.2s ease;
+      }
+
+      .link-card:hover .arrow {
+        transform: translateX(4px);
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <div class="hero">
+        <h1>Notas do Marquinhos</h1>
+        <p>Minhas apresentações, acessíveis em qualquer lugar do mundo.</p>
+      </div>
+
+      <div class="links">
+        <a class="link-card" href="https://docs.google.com/presentation/d/1QAT6ZySkgCJdmIGkOy_yiEMc_lay1GqzgaPKy0p2_kI/edit?usp=sharing" target="_blank" rel="noopener">
+          <span class="icon">🚀</span>
+          <span class="meta">
+            <strong>Empreendedorismo em TI</strong>
+            <span>Apresentação</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="link-card" href="https://docs.google.com/presentation/d/1dx_Vp2iZwtDauOQjnL74ZnWcVPqEuIFcSRfTx3RzXxs/edit?usp=sharing" target="_blank" rel="noopener">
+          <span class="icon">🎓</span>
+          <span class="meta">
+            <strong>Apresentação do TCC</strong>
+            <span>Trabalho de Conclusão de Curso</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>
