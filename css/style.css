@@ -1,0 +1,311 @@
+/*
+ * notes.miotto.dev — notas
+ * Mesma identidade visual do portfólio (marcos.miotto.dev): dark grafite
+ * esverdeado + acento verde-lima (#c6ff3d), Inter (leitura) + JetBrains Mono
+ * (labels/código), estética de engenharia.
+ *
+ * Organização:
+ *   1. Tokens (custom properties)
+ *   2. Reset e base
+ *   3. Utilitários (container, skip-link, reveal)
+ *   4. Header / navegação
+ *   5. Hero
+ *   6. Link cards
+ *   7. Rodapé
+ *   8. Media queries (mobile-first: min-width)
+ */
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  color-scheme: dark;
+
+  --bg: #0e1210;
+  --surface: #141a16;
+  --border: #26302a;
+  --text: #e8ede9;
+  --muted: #9aa69d;
+  --accent: #c6ff3d;
+  --accent-soft: rgba(198, 255, 61, 0.12);
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
+
+  --radius: 10px;
+  --container: 720px;
+}
+
+/* ---------- 2. Reset e base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(198, 255, 61, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198, 255, 61, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ---------- 3. Utilitários ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- 4. Header / navegação ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(14, 18, 16, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.75rem;
+}
+
+.brand {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand span {
+  color: var(--accent);
+}
+
+.site-nav a {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.site-nav a:hover {
+  color: var(--accent);
+}
+
+/* ---------- 5. Hero ---------- */
+.hero {
+  padding-block: 4.5rem 3rem;
+  text-align: center;
+}
+
+.hero-prompt {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.hero-prompt .prompt-symbol {
+  color: var(--accent);
+}
+
+.hero-prompt .cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-prompt .cursor {
+    animation: none;
+  }
+}
+
+.hero h1 {
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.hero p.intro {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
+/* ---------- 6. Link cards ---------- */
+.links {
+  display: grid;
+  gap: 1rem;
+  padding-block: 1rem 4rem;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  text-align: left;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.link-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.link-card .kind {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.link-card .meta {
+  flex: 1;
+}
+
+.link-card .meta strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.link-card .meta span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.link-card .arrow {
+  font-family: var(--font-mono);
+  color: var(--muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.link-card:hover .arrow {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+/* ---------- 7. Rodapé ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding-block: 2rem;
+}
+
+.site-footer p {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.site-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---------- 8. Media queries (mobile-first) ---------- */
+@media (max-width: 420px) {
+  .link-card {
+    flex-wrap: wrap;
+  }
+}
